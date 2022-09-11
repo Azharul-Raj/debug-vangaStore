@@ -13,12 +13,12 @@ loadProducts('https://fakestoreapi.com/products');
 
 // show all product in UI
 const showProducts = (products) => {
-   // console.log(products)
+   console.log(products)
    setInnerText('total_products', products.length);
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10).map((pd) => pd);
+   const allProducts = products.slice(0, 10)
    for (const product of allProducts) {
       const image = product.image;
       const div = document.createElement('div');
@@ -48,6 +48,7 @@ const addToCart = (id, price) => {
 
    updateTaxAndCharge();
    document.getElementById('total-Products').innerText = count;
+   updateTotal()
 };
 
 const showProductDetails = (product_id) => {
@@ -103,17 +104,18 @@ const updateTaxAndCharge = () => {
 
 //grandTotal update function
 const updateTotal = () => {
-   const grandTotal =
-      getInputValue('price') +
-      getInputValue('delivery-charge') +
-      getInputValue('total-tax');
-   document.getElementById('total').innerText = grandTotal;
+   const totalPrice = getInputValue('price') 
+   const totalDeliveryCharge = getInputValue('delivery-charge') 
+   const totalTax = getInputValue('total-tax');
+   const grandTotal = totalPrice + totalDeliveryCharge + totalTax
+   console.log(grandTotal)
+   document.getElementById('total').innerText = grandTotal.toFixed(2);
 };
 
 // search by category
 document.getElementById("search-btn").addEventListener("click", function () {
    const inputField = document.getElementById("input-value").value;
-   const searchedProduct = arr[0].find((p) =>
+   const searchedProduct = arr.find((p) =>
      p.category.startsWith(`${inputField}`)
    );
    showProducts(searchedProduct);
