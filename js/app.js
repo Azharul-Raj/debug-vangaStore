@@ -18,8 +18,8 @@ const showProducts = (products) => {
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10)
-   for (const product of allProducts) {
+   // const allProducts = products.slice(0, 10)
+   for (const product of products) {
       const image = product.image;
       const div = document.createElement('div');
       div.classList.add('product');
@@ -115,8 +115,8 @@ const updateTotal = () => {
 // search by category
 document.getElementById("search-btn").addEventListener("click", function () {
    const inputField = document.getElementById("input-value").value;
-   const searchedProduct = arr.find((p) =>
-     p.category.startsWith(`${inputField}`)
+   const searchedProduct = arr[0].filter((p) =>
+     p.category.includes(`${inputField}`)
    );
    showProducts(searchedProduct);
  });
